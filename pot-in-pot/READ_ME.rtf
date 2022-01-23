@@ -1,0 +1,62 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\f0\fs36 \cf0 Read Me \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+\cf0 by Ethan McGarrigle and Danyal Rehman (Massachusetts Institute of Technology), 2019\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+This is a reference for how to run the pot-in-pot transport model using the functions in the \'93Pot-in-Pot\'94 Directory.\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\fs28 \cf0 \ul \ulc0 Basic Use
+\fs24 \ulnone \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1\b Open
+\f0\b0  and 
+\f1\b Run 
+\f0\b0 \'93Simulation_Script.m\'94. \
+\
+Simulation_Script.m contains a script that allows you to load any experimental data, specify a mass of vegetable loaded into the device a well as wind speeds, define geometric and material parameters of the device you are modeling, and solves a system of ordinary differential equations (ODEs). If the system you are modeling contains no vegetables, the system of ODEs will be in \'93Empty_Pot_ODEs.m\'94, while a system containing vegetables would use \'93Filled_Pot_ODEs.m\'94. \
+\
+Currently, a small set of data, titled \'93Sample_Experimental_Data.xls\'94, is provided as an example so that the code will run upon opening. \
+\
+Furthermore, after solving the system of ODEs, this script will plot the results and display the predicted device temperatures along with the ambient temperature, the wet bulb temperature, and the observed device inner chamber temperature. The total amount of water the device has used due to evaporation is calculated. Lastly, different statistical measurements of temperature deviation between predicted and observed temperatures are calculated. \
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\fs28 \cf0 \ul \ulc0 Loading and Formatting Experimental Data
+\fs24 \ulnone \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+The necessary data to run this script as written are the recorded elapsed time, the inner chamber temperature, the ambient temperature, and the ambient humidity. In the beginning section of \'93Simulation_Script.m\'94, you have the opportunity to load an excel file using xlsread(). The data should be in the form of four columns. The first column should be time in seconds, the second, inner chamber air temperature in celsius; the third, ambient air temperature in celsius; and the fourth, ambient outside relative humidity, expressed as a decimal between 0 and 1 (i.e., a value of 0.45 corresponds to 45% relative humidity). \
+\
+In this model, warm and arid climates are assumed. As such, solar irradiation flux data is inputted from a representative climate in the excel file \'93solar_irradiation_formatted.xls\'94. This data is loaded in the \'93q_abs.m\'94 file that calculates the solar incident radiative flux received by the dwelling housing the device at a given point in the day, where a time of zero corresponds to midnight. For your climate, representative data should replace the preset data provided if the dwelling material\'92s have a solar absorptivity value large enough to make incipient solar radiations a large contribution to radiative heating of the dwelling. \
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\fs28 \cf0 \ul \ulc0 Notes
+\fs24 \ulnone \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 The development of these scripts and functions used MATLAB_R2018b. \
+\
+The psychometric chart calculations are detailed in \'93psychometricsnew.m\'94, which can be found additionally from https://uk.mathworks.com/matlabcentral/fileexchange/49154-si-psychrometric-chart.\
+\
+}
