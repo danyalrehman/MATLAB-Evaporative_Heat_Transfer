@@ -204,7 +204,7 @@ other = [t_recorded, T_outside, outside_humidity, air_props, T_inside];
 
 % Solve using ode23s; t is the time in seconds; sol represents the solution
 % vector
-[t, sol] = ode23s(f_handle_Transient, t_span, initial_cond, [], parameters, other);
+[t, sol] = ode23(f_handle_Transient, t_span, initial_cond, [], parameters, other);
 
 
 %% Wet Bulb
