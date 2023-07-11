@@ -9,7 +9,7 @@ clear all, close all, clc
 tic
 %% Load any experimental data (Ambient inputs, observed device temperature)
  
-data = xlsread('Sample_Experimental_Data.xls');
+data = readmatrix('Sample_Experimental_Data.xls');
 
 t_recorded = data(1:end, 1);
 T_inside = data(1:end, 2);

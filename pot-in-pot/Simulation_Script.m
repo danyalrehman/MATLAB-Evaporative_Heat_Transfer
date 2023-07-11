@@ -10,7 +10,7 @@ tic
 
 %% Read/Load the experimental data 
 
-data = xlsread('Sample_Experimental_Data.xls');
+data = readmatrix('Sample_Experimental_Data.xls');
 
 t_recorded = data(1:end, 1);
 T_inside = data(1:end, 2);
@@ -192,7 +192,6 @@ else
 end
 
 
-
 constraints_vec = [inner_speed; outer_speed; NaN; V_H2O_i; sand_porosity; NaN];
 emissivity_vec = [E_clay; E_cloth; E_roof; E_wall; roof_solar_absorptivity; NaN];
 parameters = [geo_and_props, emissivity_vec, constraints_vec, roof_vec];
@@ -204,7 +203,7 @@ other = [t_recorded, T_outside, outside_humidity, air_props, T_inside];
 
 % Solve using ode23s; t is the time in seconds; sol represents the solution
 % vector
-[t, sol] = ode23(f_handle_Transient, t_span, initial_cond, [], parameters, other);
+[t, sol] = ode23s(f_handle_Transient, t_span, initial_cond, [], parameters, other);
 
 
 %% Wet Bulb
