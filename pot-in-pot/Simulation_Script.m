@@ -10,7 +10,7 @@ tic
 
 %% Read/Load the experimental data 
 
-data = xlsread('Sample_Experimental_Data.xls');
+data = readmatrix('Sample_Experimental_Data.xls');
 
 t_recorded = data(1:end, 1);
 T_inside = data(1:end, 2);
@@ -190,7 +190,6 @@ else
     initial_cond = [T_1_initial, T_1_initial, T_1_initial, T_1_initial, T_1_initial , ...
     T_1_initial,  V_H2O_i, T_roof_ext_i, T_roof_int_i]; 
 end
-
 
 
 constraints_vec = [inner_speed; outer_speed; NaN; V_H2O_i; sand_porosity; NaN];

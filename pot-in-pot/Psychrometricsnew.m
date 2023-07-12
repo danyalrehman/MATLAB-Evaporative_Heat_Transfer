@@ -131,7 +131,7 @@ if (~isempty(w_in) && ~isempty(phi_in))
     Pw=w*P/(0.621945+w); %partial pressure of water wapor
     Pws=Pw/phi*100;
     options=optimset('LargeScale','off','Display','off');
-    [y,val,exitflag]=fsolve(@Iteration_function_1, 20,options);Tdb =y(1);
+    [y,val,exitflag]=fzero(@Iteration_function_1, 20,options);Tdb =y(1);
     if exitflag<1
         disp('Iteration error')
     end
@@ -148,7 +148,7 @@ if (~isempty(phi_in) && ~isempty(h_in))
     
     % Tdb calculation from phi and h    
     options=optimset('LargeScale','off','Display','off');
-    [y,val,exitflag]=fsolve(@Iteration_function_2, 20,options);Tdb =y(1);
+    [y,val,exitflag]=fzero(@Iteration_function_2, 20,options);Tdb =y(1);
     if exitflag<1
         disp('Iteration error')
     end
@@ -192,7 +192,7 @@ if (~isempty(w_in) && ~isempty(Twb_in))
     Pwsasterik=Saturation_pressure(Twb);
     ws=0.621945*Pwsasterik/(P-Pwsasterik);
     options=optimset('LargeScale','off','Display','off');
-    [y,val,exitflag]=fsolve(@Iteration_function_4, Twb,options);Tdb =y(1);
+    [y,val,exitflag]=fzero(@Iteration_function_4, Twb,options);Tdb =y(1);
     if exitflag<1
         disp('Iteration error')
     end
@@ -216,7 +216,7 @@ if (~isempty(phi_in) && ~isempty(Twb_in))
     Pwsasterik=Saturation_pressure(Twb);
     ws=0.621945*Pwsasterik/(P-Pwsasterik);
     options=optimset('LargeScale','off','Display','off');  
-    [y,val,exitflag]=fsolve(@Iteration_function_5, Twb,options);Tdb =y(1);
+    [y,val,exitflag]=fzero(@Iteration_function_5, Twb,options);Tdb =y(1);
     if exitflag<1
         disp('Iteration error')
     end
@@ -243,7 +243,7 @@ if nargout>6 && isempty(Twb_in)
 % Note: this Twb calc. equations are good for patm=101325 Pa only. 
 if abs(Tdb - Tdp) < .001, Twb=Tdb;return;end
 options=optimset('LargeScale','off','Display','off');
-[y,val,exitflag]=fsolve(@Iteration_function_3, Tdb,options);Twb=y(1);
+[y,val,exitflag]=fzero(@Iteration_function_3, Tdb,options);Twb=y(1);
 if Twb > Tdb,Twb=Tdb;end
 if Twb < Tdp,Twb=Tdp;end   
 end
